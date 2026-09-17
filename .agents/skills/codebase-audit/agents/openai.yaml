@@ -1,0 +1,6 @@
+interface:
+  display_name: "Codebase Audit"
+  short_description: "Audit the whole repository for architectural debt and complexity"
+  default_prompt: "Use $codebase-audit to audit the repository from first principles and return a ranked shortlist of global simplifications."
+policy:
+  allow_implicit_invocation: false
