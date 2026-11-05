@@ -1,0 +1,137 @@
+# AI-Füllwörter, Deutsch. Format: phrase<TAB>CUT|HIGHLIGHT. Groß-/Kleinschreibung egal, Präfix-Treffer (nahtlos trifft nahtlose).
+# CUT = immer markieren (wörtliche Übersetzungen englischer KI-Floskeln, Template-Sätze). HIGHLIGHT = nur in Häufungen.
+nahtlos	CUT
+eintauchen	CUT
+tauchen wir ein	CUT
+entfessel	CUT
+ganzheitlich	CUT
+maßgeschneidert	CUT
+zukunftsweisend	CUT
+zukunftssicher	CUT
+spielt eine entscheidende rolle	CUT
+spielen eine entscheidende rolle	CUT
+spielt eine zentrale rolle	CUT
+zusammenfassend lässt sich	CUT
+zusammenfassend	CUT
+abschließend lässt sich	CUT
+es ist wichtig zu beachten	CUT
+es sei darauf hingewiesen	CUT
+es ist anzumerken	CUT
+lassen sie uns	CUT
+lasst uns	CUT
+werfen wir einen blick	CUT
+stellen sie sich vor	CUT
+in der heutigen	CUT
+in einer welt, in der	CUT
+im zeitalter	CUT
+schnelllebig	CUT
+bahnbrechend	CUT
+wegweisend	CUT
+revolutionär	CUT
+disruptiv	CUT
+game changer	CUT
+gamechanger	CUT
+synergie	CUT
+facettenreich	CUT
+vielschichtig	CUT
+das nächste level	CUT
+auf ein neues level	CUT
+volles potenzial	CUT
+potenzial entfalten	CUT
+potenzial ausschöpfen	CUT
+tür und tor	CUT
+dreh- und angelpunkt	CUT
+zeugt von	CUT
+state of the art	CUT
+ich hoffe, das hilft	CUT
+zögern sie nicht	CUT
+bei fragen stehe ich	CUT
+gerne stehe ich	CUT
+in diesem artikel	CUT
+in diesem beitrag	CUT
+in dieser präsentation	CUT
+in diesem deck	CUT
+in diesem dokument	CUT
+wir werden uns ansehen	CUT
+ist mehr als nur	CUT
+echter mehrwert	CUT
+echten mehrwert	CUT
+mehrwert schaffen	CUT
+der schlüssel zum erfolg	CUT
+erfolgsgeschichte	CUT
+best practice	CUT
+lösungsorientiert	CUT
+kundenzentriert	CUT
+ergebnisorientiert	CUT
+innovationskraft	CUT
+leuchtturm	CUT
+innovativ	HIGHLIGHT
+innovation	HIGHLIGHT
+robust	HIGHLIGHT
+umfassend	HIGHLIGHT
+entscheidend	HIGHLIGHT
+essenziell	HIGHLIGHT
+essentiell	HIGHLIGHT
+unerlässlich	HIGHLIGHT
+unverzichtbar	HIGHLIGHT
+vielfältig	HIGHLIGHT
+landschaft	HIGHLIGHT
+ökosystem	HIGHLIGHT
+mehrwert	HIGHLIGHT
+meilenstein	HIGHLIGHT
+optimal	HIGHLIGHT
+optimier	HIGHLIGHT
+effizien	HIGHLIGHT
+effektiv	HIGHLIGHT
+dynamisch	HIGHLIGHT
+proaktiv	HIGHLIGHT
+leistungsstark	HIGHLIGHT
+leistungsfähig	HIGHLIGHT
+spannend	HIGHLIGHT
+großartig	HIGHLIGHT
+herausragend	HIGHLIGHT
+einzigartig	HIGHLIGHT
+exzellen	HIGHLIGHT
+begeister	HIGHLIGHT
+darüber hinaus	HIGHLIGHT
+des weiteren	HIGHLIGHT
+abschließend	HIGHLIGHT
+schlussendlich	HIGHLIGHT
+nicht zuletzt	HIGHLIGHT
+unterstreich	HIGHLIGHT
+verdeutlich	HIGHLIGHT
+beleucht	HIGHLIGHT
+entfalten	HIGHLIGHT
+vorantreib	HIGHLIGHT
+befähig	HIGHLIGHT
+navigier	HIGHLIGHT
+orchestrier	HIGHLIGHT
+transformier	HIGHLIGHT
+transformation	HIGHLIGHT
+skalierbar	HIGHLIGHT
+agil	HIGHLIGHT
+zielführend	HIGHLIGHT
+herzstück	HIGHLIGHT
+auf augenhöhe	HIGHLIGHT
+hand in hand	HIGHLIGHT
+gemeinsam gestalten	HIGHLIGHT
+fazit	HIGHLIGHT
+learnings	HIGHLIGHT
+takeaways	HIGHLIGHT
+insights	HIGHLIGHT
+mindset	HIGHLIGHT
+commitment	HIGHLIGHT
+strategisch	HIGHLIGHT
+nachhaltig	HIGHLIGHT
+zukunftsfähig	HIGHLIGHT
+resilien	HIGHLIGHT
+smart	HIGHLIGHT
+intelligent	HIGHLIGHT
+revolution	HIGHLIGHT
+paradigm	HIGHLIGHT
+es gilt	HIGHLIGHT
+gilt es	HIGHLIGHT
+nicht nur	HIGHLIGHT
+sondern auch	HIGHLIGHT
+einerseits	HIGHLIGHT
+andererseits	HIGHLIGHT
