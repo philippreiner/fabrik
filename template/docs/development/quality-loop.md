@@ -15,7 +15,7 @@ Run the gate once, in the foreground. It runs every step even after one fails an
 
 | Owner | Checks |
 | --- | --- |
-| Lint config with the [anti-slop plugin](../../scripts/quality/anti-slop/) | Type evidence, imports, cycles, and low-signal patterns |
+| Lint config with [anti-slop](https://github.com/dmmulroy/anti-slop) (`install-anti-slop` skill) | Type evidence, imports, cycles, and low-signal patterns |
 | [Doc caps](../../scripts/quality/check-doc-caps.mjs) | Character caps for `AGENTS.md`, `DESIGN.md`, `PRODUCT.md`, `docs/architecture.md`, and own skills |
 | `[architecture test]` | Package dependency direction |
 

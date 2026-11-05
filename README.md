@@ -1,6 +1,6 @@
 # Fabrik
 
-Skills, agents, and project rules for building software with Claude Code and Codex. One command installs the skills into any project, and a template sets up the rest.
+Skills, agents, and project rules for building software with Claude Code and Codex. One command installs the skills into any project, and a template sets up the rest. It builds on Matt Pocock's [skills](https://github.com/mattpocock/skills) and Lauren Tan's [pstack](https://github.com/cursor/plugins/tree/main/pstack).
 
 ## Install
 
@@ -10,9 +10,10 @@ Run from your project root (Node.js 22.20 or later):
 npx skills add philippreiner/fabrik -a claude-code -a codex
 npx skills add philippreiner/redline -a claude-code -a codex
 npx skills add vercel-labs/agent-browser --skill agent-browser -a claude-code -a codex
+npx skills add dmmulroy/anti-slop --skill install-anti-slop -a claude-code -a codex
 ```
 
-The first line installs every Fabrik skill. Pick one with `--skill <name>`. The other two install the companions that `qa`, `break-ui`, and the `tester` agent call on. Update later with `npx skills update`.
+The first line installs every Fabrik skill; pick one with `--skill <name>`. redline and agent-browser are the companions that `qa`, `break-ui`, and the `tester` agent call on. After the last line, ask your agent to install anti-slop: it copies Dillon Mulroy's Oxlint rules against AI slop into your repo and configures them. Update later with `npx skills update`.
 
 ## Skills
 
@@ -34,6 +35,7 @@ The first line installs every Fabrik skill. Pick one with `--skill <name>`. The 
 | `retro` | Find where recent sessions went wrong and fix the setup | `/retro` |
 | `codebase-audit` | Rank simplifications across the whole repository | `/codebase-audit` |
 | `test-audit` | Prune tests that restate the implementation | `/test-audit` |
+| `install-anti-slop` | Add or update the anti-slop Oxlint rules in your repo. [Separate repo](https://github.com/dmmulroy/anti-slop) | On its own |
 
 "On its own" means the agent picks the skill when the task matches; you can also type its name.
 
@@ -44,7 +46,7 @@ The first line installs every Fabrik skill. Pick one with `--skill <name>`. The 
 - `AGENTS.md` (linked as `CLAUDE.md`): rules for every task, with placeholders for your stack and checks
 - `PRODUCT.md`, `DESIGN.md`, `docs/architecture.md`, `docs/plans/`, `docs/development/`
 - Four agents for Claude Code and Codex: `explorer`, `oracle`, `tester`, `worker`
-- `scripts/quality/`: eight anti-slop Oxlint rules and a size cap for the shared docs
+- `scripts/quality/check-doc-caps.mjs`: a size cap for the shared docs
 
 Copy it without overwriting existing files, then fill in every `[placeholder]`:
 
@@ -59,20 +61,7 @@ cp -Rn /tmp/fabrik/template/. .
 
 **Where do the skills end up?** In `.agents/skills/`, linked into `.claude/skills/`, with sources recorded in `skills-lock.json`. Commit all three.
 
-**How do I turn on the lint rules?** Install `@oxlint/plugins` and add the plugin to `.oxlintrc.json`:
-
-```json
-{
-  "jsPlugins": [{ "name": "anti-slop", "specifier": "./scripts/quality/anti-slop/index.ts" }],
-  "rules": {
-    "anti-slop/no-chained-type-assertions": "error",
-    "anti-slop/no-widen-then-assert": "error",
-    "anti-slop/no-module-mocking": "warn"
-  }
-}
-```
-
-The other rules are in `scripts/quality/anti-slop/index.ts`.
+**How do I add the lint rules?** Install `install-anti-slop` (see Install) and ask your agent to install anti-slop. It copies the rules into your repo, matches your Oxlint version, and enables them. The copy is yours to change; asking the agent to update anti-slop later merges upstream fixes and keeps your changes.
 
 **What does the doc cap do?** `node scripts/quality/check-doc-caps.mjs` fails when `AGENTS.md`, `PRODUCT.md`, `DESIGN.md`, `docs/architecture.md`, or one of your own skills grows past its character limit. Add it to your quality gate so a change removes text before it adds text.
 
@@ -87,7 +76,7 @@ Code review runs in the main thread with `review-change`, and the `codex` skill 
 
 **Why no hooks?** A hook runs on every matching tool call in every workspace and slows each edit. Put guidance in `AGENTS.md`, a skill description, or your quality gate's output.
 
-**What does the template expect from my codebase?** Agents copy what they read, so the code has to be the documentation:
+**What does the template expect from my codebase?** Agents copy what they read, so the code has to be the documentation, an idea from pstack:
 
 - Code shows behavior. Docs hold only intent, words, and decisions, so nothing describes behavior that has since changed.
 - Comments state the reason a line exists or the invariant it keeps, in one or two lines.
@@ -97,4 +86,4 @@ Code review runs in the main thread with `review-change`, and the `codex` skill 
 
 **How are the skills organized?** `skills/verify/` checks the agent's work, `skills/think/` helps you decide and write with it, and `skills/improve/` turns mistakes into better rules. The folders do not change how you install.
 
-**Credits?** `break-ui` is adapted from Emil Kowalski's [break-ui](https://github.com/emilkowalski/skills) (MIT). `writing-for-agents` and the shared-vocabulary practice follow Matt Pocock. `agent-browser` is by [Vercel Labs](https://github.com/vercel-labs/agent-browser).
+**Credits?** `break-ui` is adapted from Emil Kowalski's [break-ui](https://github.com/emilkowalski/skills) (MIT). `writing-for-agents` and the shared-vocabulary practice follow Matt Pocock. `agent-browser` is by [Vercel Labs](https://github.com/vercel-labs/agent-browser), and [anti-slop](https://github.com/dmmulroy/anti-slop) by Dillon Mulroy (MIT).
