@@ -1,0 +1,68 @@
+# Business and management vocabulary an executive reader uses daily.
+# scan.py treats these as known. Extend per reader with --known.
+agenda
+audit
+backlog
+benchmark
+board
+budget
+business case
+capex
+cash flow
+churn
+compliance
+cross-sell
+dashboard
+deadline
+deliverable
+downtime
+ebit
+ebitda
+escalation
+forecast
+go-live
+go-to-market
+governance
+headcount
+incident
+invoice
+kickoff
+lead time
+legacy
+margin
+milestone
+migration
+onboarding
+opex
+outage
+outsourcing
+payback
+pilot
+pipeline
+portfolio
+procurement
+programme
+proof of concept
+quarter
+quarterly
+renewal
+retention
+revenue
+roadmap
+rollout
+run-rate
+scope
+spreadsheet
+stakeholder
+stakeholders
+steering committee
+supply chain
+throughput
+transformation
+upsell
+uptime
+utilization
+vendor
+workflow
+working capital
+workshop

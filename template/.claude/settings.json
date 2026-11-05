@@ -1,0 +1,8 @@
+{
+  "env": {
+    "AGENT_BROWSER_IDLE_TIMEOUT_MS": "600000"
+  },
+  "permissions": {
+    "deny": ["Agent(Explore)", "Agent(Plan)"]
+  }
+}

@@ -1,0 +1,146 @@
+# AI filler, English. Format: phrase<TAB>CUT|HIGHLIGHT. Matched case-insensitively as a prefix (delve matches delves).
+# CUT = always flag (write-human tier 1 and template phrases). HIGHLIGHT = flag only in clusters (tier 2 and 3).
+delve	CUT
+tapestry	CUT
+realm	CUT
+paradigm	CUT
+embark	CUT
+beacon	CUT
+testament to	CUT
+robust	CUT
+comprehensive	CUT
+cutting-edge	CUT
+leverag	CUT
+pivotal	CUT
+underscor	CUT
+meticulous	CUT
+seamless	CUT
+game-chang	CUT
+utiliz	CUT
+watershed	CUT
+the future looks bright	CUT
+only time will tell	CUT
+nestled	CUT
+vibrant	CUT
+thriving	CUT
+showcas	CUT
+deep dive	CUT
+dive into	CUT
+unpack	CUT
+bustling	CUT
+intricate	CUT
+intricacies	CUT
+complexities	CUT
+ever-evolving	CUT
+enduring	CUT
+daunting	CUT
+holistic	CUT
+actionable	CUT
+impactful	CUT
+learnings	CUT
+thought leader	CUT
+best practice	CUT
+at its core	CUT
+synerg	CUT
+interplay	CUT
+in order to	CUT
+due to the fact that	CUT
+serves as	CUT
+boasts	CUT
+commence	CUT
+ascertain	CUT
+endeavor	CUT
+symphony	CUT
+embrace	CUT
+in today's	CUT
+in an era	CUT
+in the rapidly evolving	CUT
+fast-paced world	CUT
+it's worth noting	CUT
+it is worth noting	CUT
+in conclusion	CUT
+in summary	CUT
+to summarize	CUT
+let's dive	CUT
+let's explore	CUT
+let's take a look	CUT
+let's break	CUT
+i hope this helps	CUT
+great question	CUT
+feel free to	CUT
+let me know if	CUT
+whether you're	CUT
+it's not about	CUT
+as we move forward	CUT
+one thing is certain	CUT
+when it comes to	CUT
+at the end of the day	CUT
+in this deck	CUT
+we will explore	CUT
+harness	HIGHLIGHT
+navigat	HIGHLIGHT
+foster	HIGHLIGHT
+elevat	HIGHLIGHT
+unleash	HIGHLIGHT
+streamlin	HIGHLIGHT
+empower	HIGHLIGHT
+bolster	HIGHLIGHT
+spearhead	HIGHLIGHT
+resonat	HIGHLIGHT
+revolutioniz	HIGHLIGHT
+facilitat	HIGHLIGHT
+underpin	HIGHLIGHT
+nuanced	HIGHLIGHT
+crucial	HIGHLIGHT
+multifaceted	HIGHLIGHT
+ecosystem	HIGHLIGHT
+myriad	HIGHLIGHT
+plethora	HIGHLIGHT
+encompass	HIGHLIGHT
+catalyz	HIGHLIGHT
+reimagin	HIGHLIGHT
+galvaniz	HIGHLIGHT
+augment	HIGHLIGHT
+cultivat	HIGHLIGHT
+illuminat	HIGHLIGHT
+elucidat	HIGHLIGHT
+juxtapos	HIGHLIGHT
+transformative	HIGHLIGHT
+transformation	HIGHLIGHT
+cornerstone	HIGHLIGHT
+paramount	HIGHLIGHT
+poised	HIGHLIGHT
+burgeoning	HIGHLIGHT
+nascent	HIGHLIGHT
+quintessential	HIGHLIGHT
+overarching	HIGHLIGHT
+landscape	HIGHLIGHT
+journey	HIGHLIGHT
+significant	HIGHLIGHT
+innovati	HIGHLIGHT
+effective	HIGHLIGHT
+dynamic	HIGHLIGHT
+scalab	HIGHLIGHT
+compelling	HIGHLIGHT
+unprecedented	HIGHLIGHT
+exceptional	HIGHLIGHT
+remarkabl	HIGHLIGHT
+sophisticated	HIGHLIGHT
+instrumental	HIGHLIGHT
+world-class	HIGHLIGHT
+state-of-the-art	HIGHLIGHT
+best-in-class	HIGHLIGHT
+moreover	HIGHLIGHT
+furthermore	HIGHLIGHT
+additionally	HIGHLIGHT
+notably	HIGHLIGHT
+importantly	HIGHLIGHT
+that said	HIGHLIGHT
+it's important to	HIGHLIGHT
+it is important to	HIGHLIGHT
+excited to	HIGHLIGHT
+passionate	HIGHLIGHT
+unlock	HIGHLIGHT
+next level	HIGHLIGHT
+truly	HIGHLIGHT
+genuinely	HIGHLIGHT
