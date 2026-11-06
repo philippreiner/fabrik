@@ -1,135 +1,132 @@
 # Fabrik
 
-My software factory: the skills, agents, and project rules I use to build software with coding agents. *Fabrik* is German for factory. Here the workers are agents.
+Skills, agents, and project rules for building software with Claude Code and Codex.
 
-It runs in Claude Code and Codex, and it comes from two production codebases where it was cut down until only what earned its place stayed.
+An agent says "done" in the same tone whether the work is done or not. So every change gets verified: a code review against rubrics, QA on the real screen, a second opinion from another vendor's model. Every mistake becomes a rule, a check, or a skill line. The codebase stays small and clean, because agents copy what they read.
+
+Fabrik builds on Matt Pocock's [skills](https://github.com/mattpocock/skills) and Lauren Tan's [pstack](https://github.com/cursor/plugins/tree/main/pstack).
 
 ## Install
 
-Skills install with the [skills CLI](https://github.com/vercel-labs/skills). Run it from your project root:
+Run from your project root (Node.js 22.20 or later).
+
+All Fabrik skills, for Claude Code and Codex:
 
 ```bash
-# Every Fabrik skill, for Claude Code and Codex
 npx skills add philippreiner/fabrik -a claude-code -a codex
-
-# One skill
-npx skills add philippreiner/fabrik --skill vernunft -a claude-code -a codex
-
-# The companions the skills call on
-npx skills add philippreiner/redline -a claude-code -a codex
-npx skills add vercel-labs/agent-browser --skill agent-browser -a claude-code -a codex
 ```
 
-The CLI keeps one copy in `.agents/skills/`, links it for Claude Code, and records the source in `skills-lock.json`. `npx skills update` pulls new versions.
+One skill, for example `vernunft`:
 
-The project template (agents, `AGENTS.md`, docs, checks) is plain files. Copy it without overwriting what you have, then fill in the `[placeholders]`:
+```bash
+npx skills add philippreiner/fabrik --skill vernunft -a claude-code -a codex
+```
+
+The companions that `qa`, `break-ui`, and the `tester` agent call on, and the anti-slop lint rules:
+
+```bash
+npx skills add philippreiner/redline -a claude-code -a codex
+npx skills add vercel-labs/agent-browser --skill agent-browser -a claude-code -a codex
+npx skills add dmmulroy/anti-slop --skill install-anti-slop -a claude-code -a codex
+```
+
+Then ask your agent to install anti-slop. Update everything with `npx skills update`.
+
+## Skills
+
+| Skill | Why it is in |
+| --- | --- |
+| [**redline**](https://github.com/philippreiner/redline/blob/main/skills/redline/SKILL.md) | Agents describe UI they never looked at. redline measures the real screen (alignment, spacing, hierarchy, words) and fixes what is off. |
+| [**review-change**](https://github.com/philippreiner/fabrik/blob/main/skills/verify/review-change/SKILL.md) | Green tests do not prove a change is right. Reviews code against rubrics for shape, data, permissions, and performance, and rates every cut on a Simplification ladder. |
+| [**qa**](https://github.com/philippreiner/fabrik/blob/main/skills/verify/qa/SKILL.md) | Most corrections are about results the agent never looked at. Screenshots each changed screen beside its baseline before handover. |
+| [**vernunft**](https://github.com/philippreiner/fabrik/blob/main/skills/think/vernunft/SKILL.md) | Agents defend surprising designs. Tests a design against what users expect and how established systems solve it. |
+| [`codex`](https://github.com/philippreiner/fabrik/blob/main/skills/verify/codex/SKILL.md) | One model misses what another catches. Runs a review or second opinion on the other vendor's model. |
+| [`break-ui`](https://github.com/philippreiner/fabrik/blob/main/skills/verify/break-ui/SKILL.md) | Demo data hides layout bugs. Fills a list or card with worst-case data and fixes what breaks. |
+| [`grilling`](https://github.com/philippreiner/fabrik/blob/main/skills/think/grilling/SKILL.md) | A plan with silent assumptions fails late. The agent interviews you, in rounds, until none are left. |
+| [`shared-understanding`](https://github.com/philippreiner/fabrik/blob/main/skills/think/shared-understanding/SKILL.md) | Long explanations cost your attention. Picks the format you can hold: options, before/after, an analogy. |
+| [`clarity`](https://github.com/philippreiner/fabrik/blob/main/skills/think/clarity/SKILL.md) | Busy readers need the point first. Writes and reviews decks, memos, and exec updates. |
+| [`write-human`](https://github.com/philippreiner/fabrik/blob/main/skills/think/write-human/SKILL.md) | Readers stop trusting text that sounds generated. Removes AI tells from anything published or sent. |
+| [`microcopy`](https://github.com/philippreiner/fabrik/blob/main/skills/think/microcopy/SKILL.md) | One concept, one name, on every screen. Writes labels, buttons, and error messages. |
+| [`writing-for-agents`](https://github.com/philippreiner/fabrik/blob/main/skills/improve/writing-for-agents/SKILL.md) | A vague instruction makes the agent take a different path each run. Writes skills, agent definitions, and `AGENTS.md`. |
+| [`github`](https://github.com/philippreiner/fabrik/blob/main/skills/improve/github/SKILL.md) | A mistake should happen once. Writes pull requests whose Learnings name the rule each mistake becomes. |
+| [`retro`](https://github.com/philippreiner/fabrik/blob/main/skills/improve/retro/SKILL.md) | The setup should learn from its sessions. Run `/retro` to find where work went wrong and get the smallest fix. |
+| [`codebase-audit`](https://github.com/philippreiner/fabrik/blob/main/skills/verify/codebase-audit/SKILL.md) | Complexity grows one reasonable change at a time. Run `/codebase-audit` for a ranked list of cuts. |
+| [`test-audit`](https://github.com/philippreiner/fabrik/blob/main/skills/verify/test-audit/SKILL.md) | Tests that restate the code break on every refactor. Run `/test-audit` to prune them. |
+| [`agent-browser`](https://github.com/vercel-labs/agent-browser/blob/main/skills/agent-browser/SKILL.md) | QA needs a browser the agent can drive. By Vercel Labs. |
+| [`install-anti-slop`](https://github.com/dmmulroy/anti-slop/blob/main/skills/install-anti-slop/SKILL.md) | Lint catches slop before review does. Copies Dillon Mulroy's Oxlint rules into your repo and keeps them updated. |
+
+## Project template
+
+`template/` holds the files a new project needs around the skills:
+
+- `AGENTS.md` (linked as `CLAUDE.md`): rules for every task, with placeholders for your stack and checks
+- `PRODUCT.md`, `DESIGN.md`, `docs/architecture.md`, `docs/plans/`, `docs/development/`
+- Four agents for Claude Code and Codex: `explorer`, `oracle`, `tester`, `worker`
+- `scripts/quality/`: checks that work in any git repository (see the FAQ)
+- `scripts/ab`: drives agent-browser, waits for the network after each action, and saves screenshots to `.context/shots/`
+
+Copy it without overwriting existing files, then fill in every `[placeholder]`:
 
 ```bash
 gh repo clone philippreiner/fabrik /tmp/fabrik
 cp -Rn /tmp/fabrik/template/. .
 ```
 
-## Highlights
+## FAQ
 
-- **[redline](https://github.com/philippreiner/redline)**: design for agents. Lenses, numbers, and browser scripts that measure the UI an agent built instead of trusting its description of it. Alignment, hierarchy, spacing, words, and slop, checked on the real screen.
-- **The review loop**: `review-change` reads every change against rubrics for code shape, data, permissions, and performance, and rates every cut on a Simplification ladder. `qa` looks at the change the way its user meets it, screenshot beside baseline. `codex` hands a deep review to the other vendor's model, which has other blind spots. The `tester` agent uses the product as a persona and reports what breaks.
-- **vernunft**: German for reason, good sense. A least-astonishment check that holds a design against what its user expects and how established systems solve it. The second opinion when something feels off, or when you challenge the agent.
+**Which agents does it support?**
 
-## Three buckets
+Claude Code and Codex. The skills CLI also installs into Cursor, Gemini CLI, and others with `-a <agent>`.
 
-Fabrik does three things. Each bucket is a folder under `skills/`.
+**Where do the skills end up?**
 
-### Verify: make the agent's work checkable
+In `.agents/skills/`, linked into `.claude/skills/`, with sources recorded in `skills-lock.json`. Commit all three.
 
-An agent says "done" in the same tone whether it is or not. These skills turn claims into evidence.
+**How do I add the lint rules?**
 
-| Skill | Job |
+Install `install-anti-slop` and ask your agent to install anti-slop. It copies the rules into your repo, matches your Oxlint version, and enables them. The copy is yours to change; asking the agent to update anti-slop later merges upstream fixes and keeps your changes.
+
+**Which quality checks come with the template?**
+
+Three Node scripts that work in any git repository:
+
+| Script | Checks |
 | --- | --- |
-| `review-change` | Code review rubrics, deep review, and the Simplification ladder |
-| `qa` | Check screens, flows, and strings as the user meets them |
-| `break-ui` | Feed a surface worst-case data until it breaks, then fix it |
-| `codex` | Run a review or second opinion on the other vendor's model |
-| `test-audit` | Prune tests that restate the implementation (invoked by hand) |
-| `codebase-audit` | Rank whole-repository simplifications (invoked by hand) |
+| `check-comment-density.mjs` | Files where more than 12% of lines are comments, and single comments of 12+ lines or 70+ words. Scans files changed since `origin/main`; `--all` scans the repo, `--strict` fails on findings. Needs `typescript` 5.x. |
+| `check-doc-caps.mjs` | `AGENTS.md`, `PRODUCT.md`, `DESIGN.md`, `docs/architecture.md`, and your own skills stay under a character cap, so a change removes text before it adds text. |
+| `check-diff-volume.mjs` | Lines added and removed since `origin/main`, code apart from tests, with a note when test lines outgrow code lines. |
 
-The template adds deterministic checks: an Oxlint plugin with eight anti-slop type rules and a character cap on the shared docs.
+Run them from your quality gate, for example `node scripts/quality/check-comment-density.mjs --strict`.
 
-### Think: work and decide with the agent
+**Why only four agents?**
 
-A human reader has limited attention. These skills spend it on the decision, not on the agent's process.
+Each does work the main thread should hand off:
 
-| Skill | Job |
-| --- | --- |
-| `vernunft` | Test a design against expectations and established solutions |
-| `grilling` | Interview you, in rounds, until the plan has no silent assumptions |
-| `shared-understanding` | Pick the format that lets you hold an idea: options, before/after, analogy |
-| `clarity` | Clear writing for smart, busy readers: decks, memos, exec updates |
-| `write-human` | Prose without AI tells, for anything published, sent, or committed |
-| `microcopy` | Labels, buttons, and errors |
+- `explorer` looks things up in parallel.
+- `oracle` gives an opinion without seeing your proposed answer.
+- `tester` uses the running app as a persona.
+- `worker` builds an independent slice of a change.
 
-`template/AGENTS.md` sets the same rules for every reply: the first sentence says what happened, facts apart from inference, at most three questions, each with an example and a recommendation.
+Code review runs in the main thread with `review-change`, and the `codex` skill gets a second review from another vendor's model.
 
-### Improve: let the setup learn
+**Why no hooks?**
 
-| Skill | Job |
-| --- | --- |
-| `retro` | Measure recent sessions, find where work went wrong, propose the smallest fix to the environment (invoked by hand) |
-| `writing-for-agents` | How to write skills, agents, and `AGENTS.md` so the agent takes the same path every run |
-| `github` | Commits and pull requests, each with a Learnings section that names the rule a mistake should become |
+A hook runs on every matching tool call in every workspace and slows each edit. Put guidance in `AGENTS.md`, a skill description, or your quality gate's output.
 
-A lesson moves up the cheapest rung that holds it: a type, then a check, then a pointer, then a skill line, and an `AGENTS.md` line last.
+**What does the template expect from my codebase?**
 
-## The codebase is the documentation
+Agents copy what they read, so the code has to be the documentation, an idea from pstack:
 
-Agents read the code more than the docs, and they copy what they find. A long comment, a stale pattern, or a second word for the same thing gets repeated in every change that touches it. So the codebase itself has to be the teaching material:
+- Code shows behavior. Docs hold only intent, words, and decisions, so nothing describes behavior that has since changed.
+- Comments state the reason a line exists or the invariant it keeps, in one or two lines.
+- Each concept has one name across code, copy, and docs, listed in the Words of `PRODUCT.md`.
+- When the agent copies a bad pattern, remove the pattern, or add a lint rule or a type. A warning paragraph does not stop it.
+- Each test fails for a plausible broken implementation and survives a refactor that keeps behavior.
 
-- **Code shows behavior; docs hold intent.** `PRODUCT.md` says why and in which words, `docs/architecture.md` holds boundaries and decisions with the fact that would reopen each. Feature docs, ADRs, and change logs go stale and anchor agents to old shapes, so there are none.
-- **Comments stay short.** A comment states the reason a line exists or the invariant it keeps. Restatement and history come out.
-- **One vocabulary.** Every concept has one name across code, copy, docs, and agent replies, recorded in the Words of `PRODUCT.md`, after Matt Pocock's practice of a shared domain glossary.
-- **Bad patterns get removed, not documented.** When the agent copies something wrong, the fix is the code, a lint rule, or a type, not a warning paragraph.
-- **Docs have caps.** `check-doc-caps.mjs` counts characters in `AGENTS.md`, `PRODUCT.md`, `DESIGN.md`, `docs/architecture.md`, and your own skills. A change retires text before it adds text.
-- **Tests prove behavior.** Each test fails for a plausible broken implementation and survives a behavior-preserving refactor. Database rules are proven against a real database.
+**How are the skills organized?**
 
-## What the template holds
+`skills/verify/` checks the agent's work, `skills/think/` helps you decide and write with it, and `skills/improve/` turns mistakes into better rules. The folders do not change how you install.
 
-```text
-template/
-├── AGENTS.md                 rules for every task; CLAUDE.md links here
-├── PRODUCT.md                who it serves, principles, Words
-├── DESIGN.md                 your design decisions; the craft lives in redline
-├── docs/
-│   ├── architecture.md       ownership, boundaries, decisions with reasons
-│   ├── plans/README.md       where the product goes next
-│   └── development/          quality loop and setup
-├── .claude/agents/           explorer, oracle, tester, worker
-├── .codex/agents/            the same four for Codex
-└── scripts/quality/          anti-slop Oxlint plugin, doc caps
-```
+**Who made what?**
 
-Four agents, each for work the main thread should not do itself: `explorer` looks things up in parallel, `oracle` gives an unanchored recommendation or goal review, `tester` uses the product as a persona, `worker` builds an independent slice. Everything else stays in the main thread, where you can steer it.
-
-To use the lint plugin, add it to `.oxlintrc.json` and install `@oxlint/plugins`:
-
-```json
-{
-  "jsPlugins": [{ "name": "anti-slop", "specifier": "./scripts/quality/anti-slop/index.ts" }],
-  "rules": {
-    "anti-slop/no-chained-type-assertions": "error",
-    "anti-slop/no-widen-then-assert": "error",
-    "anti-slop/no-module-mocking": "warn"
-  }
-}
-```
-
-## What was cut, and why
-
-The setup used to be larger. Session retros showed what helped:
-
-- **Four agents, not nine.** Reviewer, writer, researcher, and ideas agents were removed. Review runs in the main thread with `review-change`, and an independent read goes to the other vendor's model.
-- **No hooks.** A hook runs on every matching tool call in every workspace, and a per-edit lint hook slowed every edit. Nudges go in `AGENTS.md`, skill descriptions, or the quality gate's output.
-- **Review split from QA.** Most corrections were about visible results the agent had not looked at, not code bugs. So `qa` became its own step.
-- **No specs, ADRs, or context files.** Plans live in `docs/plans/` until they ship. Decisions are one line each in `docs/architecture.md`.
-
-## Credits
-
-`break-ui` is adapted from Emil Kowalski's [break-ui](https://github.com/emilkowalski/skills) (MIT). `writing-for-agents` and the shared-vocabulary practice follow Matt Pocock. `agent-browser` is by [Vercel Labs](https://github.com/vercel-labs/agent-browser).
+`break-ui` is adapted from Emil Kowalski's [break-ui](https://github.com/emilkowalski/skills) (MIT). `writing-for-agents` and the shared-vocabulary practice follow Matt Pocock. `agent-browser` is by [Vercel Labs](https://github.com/vercel-labs/agent-browser), and [anti-slop](https://github.com/dmmulroy/anti-slop) by Dillon Mulroy (MIT).

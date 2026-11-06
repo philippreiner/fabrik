@@ -15,8 +15,10 @@ Run the gate once, in the foreground. It runs every step even after one fails an
 
 | Owner | Checks |
 | --- | --- |
-| Lint config with the [anti-slop plugin](../../scripts/quality/anti-slop/) | Type evidence, imports, cycles, and low-signal patterns |
+| Lint config with [anti-slop](https://github.com/dmmulroy/anti-slop) (`install-anti-slop` skill) | Type evidence, imports, cycles, and low-signal patterns |
 | [Doc caps](../../scripts/quality/check-doc-caps.mjs) | Character caps for `AGENTS.md`, `DESIGN.md`, `PRODUCT.md`, `docs/architecture.md`, and own skills |
+| [Comment density](../../scripts/quality/check-comment-density.mjs) | Comment ratio per changed file and long comment blocks |
+| [Diff volume](../../scripts/quality/check-diff-volume.mjs) | Code and test lines changed since `origin/main` (report only) |
 | `[architecture test]` | Package dependency direction |
 
 The repository has no agent hooks: a hook runs on every matching tool call in every workspace, so guidance goes in `AGENTS.md`, a skill description, or the gate's output instead.
