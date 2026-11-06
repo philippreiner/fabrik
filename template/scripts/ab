@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# scripts/ab <session> <agent-browser command...>
+# Navigation and input commands then wait for network idle, so no step sleeps.
+# scripts/ab <session> shot <name> saves .context/shots/<name>.png and prints it.
+set -euo pipefail
+
+if (($# < 2)); then
+  echo "usage: scripts/ab <session> <agent-browser command...> | scripts/ab <session> shot <name>" >&2
+  exit 2
+fi
+
+session="$1"
+shift
+ab() { agent-browser --session "$session" "$@"; }
+
+case "$1" in
+  shot)
+    [[ $# -eq 2 ]] || { echo "usage: scripts/ab <session> shot <name>" >&2; exit 2; }
+    dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)/.context/shots"
+    mkdir -p "$dir"
+    ab screenshot "$dir/$2.png" >/dev/null
+    echo "$dir/$2.png"
+    ;;
+  open | goto | navigate | back | forward | reload | click | dblclick | fill | type | press | keyboard | select | check | uncheck | upload | drag | find)
+    ab "$@"
+    ab wait --load networkidle >/dev/null
+    ;;
+  *)
+    exec agent-browser --session "$session" "$@"
+    ;;
+esac
