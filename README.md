@@ -55,11 +55,11 @@ Then ask your agent to install anti-slop. Update everything with `npx skills upd
 | [`agent-browser`](https://github.com/vercel-labs/agent-browser/blob/main/skills/agent-browser/SKILL.md) | QA needs a browser the agent can drive. By Vercel Labs. |
 | [`install-anti-slop`](https://github.com/dmmulroy/anti-slop/blob/main/skills/install-anti-slop/SKILL.md) | Lint catches slop before review does. Copies Dillon Mulroy's Oxlint rules into your repo and keeps them updated. |
 
-redline on a four-pane app shell, before and after one pass: 20 checks to none. The lines (pane headers at three heights, uneven indents, times and badges off their edge) were the easy half; the pass also fixed the hierarchy: a section title as large as the page title, a count above an empty list, and actions split between a pane's header and body.
+redline on an app shell, before and after: the lines show what is off, and the agent fixes it.
 
 | Before | After |
 | --- | --- |
-| ![redline overlay on the shell before](https://raw.githubusercontent.com/philippreiner/redline/main/docs/shell-before.png) | ![redline overlay on the shell after](https://raw.githubusercontent.com/philippreiner/redline/main/docs/shell-after.png) |
+| ![redline overlay on the shell before](https://raw.githubusercontent.com/philippreiner/redline/main/docs/example-before.png) | ![redline overlay on the shell after](https://raw.githubusercontent.com/philippreiner/redline/main/docs/example-after.png) |
 
 ## Project template
 
