@@ -36,7 +36,7 @@ Then ask your agent to install anti-slop. Update everything with `npx skills upd
 
 | Skill | Why it is in |
 | --- | --- |
-| [**redline**](https://github.com/philippreiner/redline/blob/main/skills/redline/SKILL.md) | Agents describe UI they never looked at. redline measures the real screen (alignment, spacing, hierarchy, words) and fixes what is off. |
+| [**redline**](https://github.com/philippreiner/redline/blob/main/skills/redline/SKILL.md) | Agents describe UI they never looked at. redline measures the real screen (alignment across panes, spacing, shapes, hierarchy, text volume, words) and fixes what is off. |
 | [**review-change**](https://github.com/philippreiner/fabrik/blob/main/skills/verify/review-change/SKILL.md) | Green tests do not prove a change is right. Reviews code against rubrics for shape, data, permissions, and performance, and rates every cut on a Simplification ladder. |
 | [**qa**](https://github.com/philippreiner/fabrik/blob/main/skills/verify/qa/SKILL.md) | Most corrections are about results the agent never looked at. Screenshots each changed screen beside its baseline before handover. |
 | [**vernunft**](https://github.com/philippreiner/fabrik/blob/main/skills/think/vernunft/SKILL.md) | Agents defend surprising designs. Tests a design against what users expect and how established systems solve it. |
@@ -54,6 +54,10 @@ Then ask your agent to install anti-slop. Update everything with `npx skills upd
 | [`test-audit`](https://github.com/philippreiner/fabrik/blob/main/skills/verify/test-audit/SKILL.md) | Tests that restate the code break on every refactor. Run `/test-audit` to prune them. |
 | [`agent-browser`](https://github.com/vercel-labs/agent-browser/blob/main/skills/agent-browser/SKILL.md) | QA needs a browser the agent can drive. By Vercel Labs. |
 | [`install-anti-slop`](https://github.com/dmmulroy/anti-slop/blob/main/skills/install-anti-slop/SKILL.md) | Lint catches slop before review does. Copies Dillon Mulroy's Oxlint rules into your repo and keeps them updated. |
+
+redline on a four-pane app shell with seeded defects: pane headers at three heights, a button centered in a start-aligned column, uneven indents, trailing times and badges off their edge, and a pill among rounded buttons, each numbered with its CSS fix.
+
+![redline overlay on a four-pane app shell](https://raw.githubusercontent.com/philippreiner/redline/main/docs/shell.png)
 
 ## Project template
 
